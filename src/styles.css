@@ -1,5 +1,6 @@
-/* You can add global styles to this file, and also import other style files */
-@import "../node_modules/bulma/css/bulma.css";
-.searchmatch {
-  font-weight: bold;
+@import 'bulma/css/bulma.min.css';
+
+/* Add minimal app styles */
+body {
+  padding: 20px;
 }
