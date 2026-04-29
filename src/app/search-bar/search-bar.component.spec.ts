@@ -1,25 +1,28 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { TestBed } from '@angular/core/testing';
 import { SearchBarComponent } from './search-bar.component';
 
 describe('SearchBarComponent', () => {
-  let component: SearchBarComponent;
-  let fixture: ComponentFixture<SearchBarComponent>;
-
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ SearchBarComponent ]
-    })
-    .compileComponents();
-  }));
-
-  beforeEach(() => {
-    fixture = TestBed.createComponent(SearchBarComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      imports: [SearchBarComponent]
+    }).compileComponents();
   });
 
   it('should create', () => {
+    const fixture = TestBed.createComponent(SearchBarComponent);
+    const component = fixture.componentInstance;
     expect(component).toBeTruthy();
+  });
+
+  it('should emit search term on submit', () => {
+    const fixture = TestBed.createComponent(SearchBarComponent);
+    const component = fixture.componentInstance;
+    component.term = 'angular';
+    
+    let emittedTerm = '';
+    component.submitted.subscribe((term) => emittedTerm = term);
+    
+    component.onFormSubmit(new Event('submit'));
+    expect(emittedTerm).toBe('angular');
   });
 });

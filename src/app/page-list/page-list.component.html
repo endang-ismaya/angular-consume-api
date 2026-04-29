@@ -1,22 +1,10 @@
-<table class="table is-striped" *ngIf="pages.length > 0">
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Word Count</th>
-      <th>Snippet</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let page of pages">
-      <td>
-        <a
-          [href]="'https://en.wikipedia.org?curid=' + page.pageid"
-          target="_blank"
-          >{{ page.title }}</a
-        >
-      </td>
-      <td>{{ page.wordcount }}</td>
-      <td [innerHTML]="page.snippet"></td>
-    </tr>
-  </tbody>
-</table>
+<div class="columns is-multiline">
+  <div *ngFor="let page of pages" class="column is-one-third">
+    <div class="card">
+      <div class="card-content">
+        <p class="title">{{ page.title }}</p>
+        <p class="snippet">{{ page.snippet }}</p>
+      </div>
+    </div>
+  </div>
+</div>

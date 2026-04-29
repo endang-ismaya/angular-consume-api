@@ -1,24 +1,18 @@
-import { Component, OnInit, EventEmitter, Output } from '@angular/core';
-import { EventManager } from '@angular/platform-browser';
+import { Component, EventEmitter, Output } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-search-bar',
+  standalone: true,
+  imports: [FormsModule],
   templateUrl: './search-bar.component.html',
-  styleUrls: ['./search-bar.component.css'],
+  styleUrls: ['./search-bar.component.css']
 })
-export class SearchBarComponent implements OnInit {
+export class SearchBarComponent {
   @Output() submitted = new EventEmitter<string>();
   term = '';
 
-  constructor() {}
-
-  ngOnInit(): void {}
-
-  onInput(value: string) {
-    this.term = value;
-  }
-
-  onFormSubmit(event: any) {
+  onFormSubmit(event: Event) {
     event.preventDefault();
     this.submitted.emit(this.term);
   }
